@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_about"
             android:icon="@drawable/museum"
-            android:title="О музее" />
+            android:title="@string/about" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_exhibition"
             android:icon="@drawable/vystavki"
-            android:title="Выстовки" />
+            android:title="@string/exhibition" />
         <item
             android:id="@+id/nav_scanner"
             android:icon="@drawable/qrcode_scan"
-            android:title="Сканер" />
+            android:title="@string/scanner" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/gallery"
+            android:title="@string/gallery" />
         <item
             android:id="@+id/nav_news"
             android:icon="@drawable/news"
-            android:title="Новости" />
+            android:title="@string/news" />
         <item
             android:id="@+id/nav_ticket"
             android:icon="@drawable/ticket"
-            android:title="Билеты" />
+            android:title="@string/tickets" />
         <item
             android:id="@+id/nav_planzala"
             android:icon="@drawable/map"
-            android:title="План залов" />
+            android:title="@string/plan" />
     </group>
 
     <item android:title="Communicate">
@@ -36,5 +39,4 @@
                 android:title="Share" />
         </menu>
     </item>
-
 </menu>
