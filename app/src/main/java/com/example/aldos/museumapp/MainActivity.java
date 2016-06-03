@@ -11,6 +11,7 @@ import android.view.MenuItem;
 
 import com.example.aldos.museumapp.fragments.ExhibitionFragment;
 import com.example.aldos.museumapp.fragments.MainFragment;
+import com.example.aldos.museumapp.fragments.TicketFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
