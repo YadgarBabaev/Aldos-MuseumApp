@@ -9,9 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.example.aldos.museumapp.fragments.ExhibitionFragment;
 import com.example.aldos.museumapp.fragments.MainFragment;
+import com.example.aldos.museumapp.fragments.ExhibitionFragment;
+import com.example.aldos.museumapp.fragments.GalleryFragment;
+import com.example.aldos.museumapp.fragments.NewsFragment;
+import com.example.aldos.museumapp.fragments.ScannerFragment;
 import com.example.aldos.museumapp.fragments.TicketFragment;
+import com.example.aldos.museumapp.fragments.PlanZalaFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
