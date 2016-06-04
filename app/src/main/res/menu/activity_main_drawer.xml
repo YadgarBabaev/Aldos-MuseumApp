@@ -31,12 +31,17 @@
             android:title="@string/plan" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Events">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_add_picture"
+                android:title="add picture" />
+            <item
+                android:id="@+id/nav_add_news"
+                android:title="add news" />
+            <item
+                android:id="@+id/nav_add_exhibition"
+                android:title="add exhibition" />
         </menu>
     </item>
 </menu>
