@@ -1,5 +1,6 @@
 package com.example.aldos.museumapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,14 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.aldos.museumapp.fragments.AddNewsFragment;
 import com.example.aldos.museumapp.fragments.AddPictureFragment;
-import com.example.aldos.museumapp.fragments.MainFragment;
 import com.example.aldos.museumapp.fragments.ExhibitionFragment;
-import com.example.aldos.museumapp.fragments.GalleryFragment;
+import com.example.aldos.museumapp.fragments.MainFragment;
 import com.example.aldos.museumapp.fragments.NewsFragment;
+import com.example.aldos.museumapp.fragments.PlanZalaFragment;
 import com.example.aldos.museumapp.fragments.ScannerFragment;
 import com.example.aldos.museumapp.fragments.TicketFragment;
-import com.example.aldos.museumapp.fragments.PlanZalaFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
+        setTitle(R.string.about);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,12 +90,15 @@ public class MainActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
+            setTitle(title);
         } else if (id == R.id.nav_gallery) {
-            GalleryFragment fragment = new GalleryFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
+            Intent intent = new Intent(this, UnfoldableDetailsActivity.class);
+            startActivity(intent);
+//            GalleryFragment fragment = new GalleryFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
             setTitle(title);
         } else if (id == R.id.nav_news) {
             NewsFragment fragment = new NewsFragment();
@@ -101,29 +106,43 @@ public class MainActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
+            setTitle(title);
         } else if (id == R.id.nav_ticket) {
             TicketFragment fragment = new TicketFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
+            setTitle(title);
         } else if (id == R.id.nav_planzala) {
             PlanZalaFragment fragment = new PlanZalaFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_add_picture) {
-            AddPictureFragment fragment = new AddPictureFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-        }
+            setTitle(title);
+        } else additionalEvents(id);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void additionalEvents(int id) {
+        setTitle(R.string.app_name);
+        if (id == R.id.nav_add_picture) {
+            AddPictureFragment fragment = new AddPictureFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_add_news) {
+            AddNewsFragment fragment = new AddNewsFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        }
     }
 }
