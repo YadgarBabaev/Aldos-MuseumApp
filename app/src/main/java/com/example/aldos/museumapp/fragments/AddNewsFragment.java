@@ -82,7 +82,7 @@ public class AddNewsFragment extends Fragment {
     };
 
     private void updateLabel() {
-        String myFormat = "dd/MMMM/yy"; //In which you need put here
+        String myFormat = "dd/MMMM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
         n_date.setText(sdf.format(myCalendar.getTime()));
     }

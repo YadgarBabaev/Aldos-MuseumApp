@@ -2,7 +2,6 @@ package com.example.aldos.museumapp.items;
 
 import android.content.Context;
 
-import com.example.aldos.museumapp.PictureObject;
 import com.example.aldos.museumapp.dbClasses.DBHelper;
 
 public class Painting {
@@ -49,7 +48,7 @@ public class Painting {
 
     public static Painting[] getAllPaintings(Context context) {
         DBHelper db = new DBHelper(context);
-        int[] ids = db.getIds();
+        int[] ids = db.getIds("gallery");
         int size = ids.length;
         Painting[] paintings = new Painting[size];
 

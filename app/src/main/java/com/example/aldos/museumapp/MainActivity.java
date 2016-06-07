@@ -1,5 +1,6 @@
 package com.example.aldos.museumapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import com.example.aldos.museumapp.fragments.AddNewsFragment;
 import com.example.aldos.museumapp.fragments.AddPictureFragment;
 import com.example.aldos.museumapp.fragments.ExhibitionFragment;
+import com.example.aldos.museumapp.fragments.GalleryFragment;
 import com.example.aldos.museumapp.fragments.MainFragment;
 import com.example.aldos.museumapp.fragments.NewsFragment;
 import com.example.aldos.museumapp.fragments.PlanZalaFragment;

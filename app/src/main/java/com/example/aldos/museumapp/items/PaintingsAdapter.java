@@ -9,9 +9,10 @@ import android.widget.TextView;
 
 import com.alexvasilkov.android.commons.adapters.ItemsAdapter;
 import com.alexvasilkov.android.commons.utils.Views;
+import com.bumptech.glide.Glide;
+import com.example.aldos.museumapp.MainActivity;
 import com.example.aldos.museumapp.R;
 import com.example.aldos.museumapp.UnfoldableDetailsActivity;
-import com.bumptech.glide.Glide;
 
 import java.util.Arrays;
 

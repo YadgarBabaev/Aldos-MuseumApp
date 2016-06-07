@@ -1,4 +1,4 @@
-package com.example.aldos.museumapp;
+package com.example.aldos.museumapp.items;
 
 public class PictureObject {
     private String name;

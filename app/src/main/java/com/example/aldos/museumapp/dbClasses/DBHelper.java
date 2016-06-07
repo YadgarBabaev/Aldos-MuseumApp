@@ -4,7 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-import com.example.aldos.museumapp.PictureObject;
+import com.example.aldos.museumapp.items.PictureObject;
+import com.example.aldos.museumapp.items.News;
 
 import java.util.ArrayList;
 
@@ -12,8 +13,8 @@ public class DBHelper extends DbObject{
 
     public DBHelper(Context context) {super(context);}
 
-    public int[] getIds() {
-        String query = "SELECT id FROM gallery";
+    public int[] getIds(String table) {
+        String query = "SELECT id FROM " + table;
         Cursor cursor = this.getDbConnection().rawQuery(query, null);
         ArrayList<Integer> list = new ArrayList<>();
         while (cursor.moveToNext()){
@@ -21,9 +22,7 @@ public class DBHelper extends DbObject{
         }
         cursor.close();
         int[] ids = new int[list.size()];
-        for (int i=0; i < ids.length; i++){
-            ids[i] = list.get(i);
-        }
+        for (int i=0; i<ids.length; i++){ids[i] = list.get(i);}
         return ids;
     }
 
@@ -41,6 +40,20 @@ public class DBHelper extends DbObject{
         }
         cursor.close();
         return picture;
+    }
+
+    public News getNews(int id) {
+        News news = null;
+        String query = "SELECT * FROM news WHERE id = " + id;
+        Cursor cursor = this.getDbConnection().rawQuery(query, null);
+        if(cursor.moveToFirst()) {
+            String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+            String text = cursor.getString(cursor.getColumnIndexOrThrow("text"));
+            byte[] img = cursor.getBlob(cursor.getColumnIndexOrThrow("cover"));
+            news = new News(id, date, text, img);
+        }
+        cursor.close();
+        return news;
     }
 
     public long insertPicture(String name, String text, String author, String date, byte[] img){
