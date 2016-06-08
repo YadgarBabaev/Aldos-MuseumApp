@@ -10,16 +10,10 @@ import com.example.aldos.museumapp.R;
 
 public class PlanZalaFragment extends Fragment {
 
-
-    public PlanZalaFragment() {
-        // Required empty public constructor
-    }
-
+    public PlanZalaFragment() {}
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_planzala, container, false);
     }
 

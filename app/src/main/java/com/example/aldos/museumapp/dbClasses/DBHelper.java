@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.example.aldos.museumapp.items.Exhibition;
 import com.example.aldos.museumapp.items.PictureObject;
 import com.example.aldos.museumapp.items.News;
 
@@ -26,6 +27,15 @@ public class DBHelper extends DbObject{
         return ids;
     }
 
+    public long insertPicture(String name, String text, String author, String date, byte[] img){
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("text", text);
+        values.put("author", author);
+        values.put("date", date);
+        values.put("img", img);
+        return this.getDbConnection().insert("gallery", null, values);
+    }
     public PictureObject getPicture(int id) {
         PictureObject picture = null;
         String query = "SELECT * FROM gallery WHERE id = " + id;
@@ -42,6 +52,13 @@ public class DBHelper extends DbObject{
         return picture;
     }
 
+    public long insertNews(String date, String text, byte[] img){
+        ContentValues values = new ContentValues();
+        values.put("date", date);
+        values.put("text", text);
+        values.put("cover", img);
+        return this.getDbConnection().insert("news", null, values);
+    }
     public News getNews(int id) {
         News news = null;
         String query = "SELECT * FROM news WHERE id = " + id;
@@ -56,21 +73,24 @@ public class DBHelper extends DbObject{
         return news;
     }
 
-    public long insertPicture(String name, String text, String author, String date, byte[] img){
+    public long insertExhibition(byte[] img, String title, String text){
         ContentValues values = new ContentValues();
-        values.put("name", name);
+        values.put("title", title);
         values.put("text", text);
-        values.put("author", author);
-        values.put("date", date);
-        values.put("img", img);
-        return this.getDbConnection().insert("gallery", null, values);
+        values.put("image", img);
+        return this.getDbConnection().insert("exhibition", null, values);
     }
-
-    public long insertNews(String date, String text, byte[] img){
-        ContentValues values = new ContentValues();
-        values.put("date", date);
-        values.put("text", text);
-        values.put("cover", img);
-        return this.getDbConnection().insert("news", null, values);
+    public Exhibition getExhibition(int id) {
+        Exhibition object = null;
+        String query = "SELECT * FROM exhibition WHERE id = " + id;
+        Cursor cursor = this.getDbConnection().rawQuery(query, null);
+        if(cursor.moveToFirst()) {
+            String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+            String text = cursor.getString(cursor.getColumnIndexOrThrow("text"));
+            byte[] image = cursor.getBlob(cursor.getColumnIndexOrThrow("image"));
+            object = new Exhibition(id, title, text, image);
+        }
+        cursor.close();
+        return object;
     }
 }

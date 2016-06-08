@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.aldos.museumapp.MainActivity;
 import com.example.aldos.museumapp.R;
 
 import java.io.ByteArrayInputStream;

@@ -1,21 +1,23 @@
 package com.example.aldos.museumapp.fragments;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -24,65 +26,37 @@ import com.example.aldos.museumapp.R;
 import com.example.aldos.museumapp.dbClasses.DBHelper;
 
 import java.io.ByteArrayOutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 
-public class AddNewsFragment extends Fragment {
+public class AddExhibitionFragment extends Fragment {
 
-    EditText n_date, n_text;
-    ImageView n_img;
+    ImageView img;
+    EditText title, text;
     byte[] imageByteArray;
 
-    public AddNewsFragment() {}
+    public AddExhibitionFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_news, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_exhibition, container, false);
 
-        n_date = (EditText)view.findViewById(R.id.news_date);
-        n_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(getActivity(), date, myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-        n_img = (ImageView)view.findViewById(R.id.news_image);
-        n_img.setOnClickListener(new View.OnClickListener() {
+        title = (EditText) view.findViewById(R.id.e_title);
+        text  = (EditText) view.findViewById(R.id.e_text);
+
+        img = (ImageView) view.findViewById(R.id.e_image);
+        img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, 10);
             }
         });
-        n_text = (EditText)view.findViewById(R.id.news_text);
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.saveBtn);
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.saveBtn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {saveAction();}
         });
-
         return view;
-    }
-
-    Calendar myCalendar = Calendar.getInstance();
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        }
-
-    };
-
-    private void updateLabel() {
-        String myFormat = "dd/MMMM/yyyy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
-        n_date.setText(sdf.format(myCalendar.getTime()));
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -100,24 +74,30 @@ public class AddNewsFragment extends Fragment {
             cursor.close();
 
             Bitmap image = BitmapFactory.decodeFile(filePath);
-            n_img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            n_img.setImageBitmap(image);
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             image.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
             imageByteArray = outputStream.toByteArray();
+
+            Bitmap imageRounded = Bitmap.createBitmap(image.getWidth(), image.getHeight(), image.getConfig());
+            Canvas canvas = new Canvas(imageRounded);
+            Paint paint = new Paint();
+            paint.setAntiAlias(true);
+            paint.setShader(new BitmapShader(image, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+            canvas.drawRoundRect((new RectF(0, 0, image.getWidth(), image.getHeight())), 100, 100, paint);// Round Image Corner 100 100 100 100
+            img.setImageBitmap(imageRounded);
         }
     }
 
     private void saveAction(){
-        String date = n_date.getText().toString();
-        String text = n_text.getText().toString();
-        if (!date.matches("") && !text.matches("") && imageByteArray != null){
-            DBHelper db = new DBHelper(getActivity());
-            long answer = db.insertNews(date, text, imageByteArray);
+        String e_title = title.getText().toString();
+        String e_text = text.getText().toString();
+        DBHelper db = new DBHelper(getActivity());
+        if (!e_title.matches("") && imageByteArray != null) {
+            long answer = db.insertExhibition(imageByteArray, e_title, e_text);
             if(answer > 0){
                 getActivity().finish();
                 startActivity(getActivity().getIntent());
             } else Toast.makeText(getActivity(), "Error occurred while data inserted", Toast.LENGTH_SHORT).show();
-        } else {Snackbar.make(getView(), "Error is found", Snackbar.LENGTH_SHORT).show();}
+        }
     }
 }

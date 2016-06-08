@@ -1,20 +1,27 @@
 package com.example.aldos.museumapp;
 
-import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Spinner;
 
+import com.example.aldos.museumapp.fragments.AddExhibitionFragment;
 import com.example.aldos.museumapp.fragments.AddNewsFragment;
 import com.example.aldos.museumapp.fragments.AddPictureFragment;
 import com.example.aldos.museumapp.fragments.ExhibitionFragment;
-import com.example.aldos.museumapp.fragments.GalleryFragment;
 import com.example.aldos.museumapp.fragments.MainFragment;
 import com.example.aldos.museumapp.fragments.NewsFragment;
 import com.example.aldos.museumapp.fragments.PlanZalaFragment;
@@ -145,6 +152,12 @@ public class MainActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-        }
+        } else if (id == R.id.nav_add_exhibition) {
+            AddExhibitionFragment fragment = new AddExhibitionFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_delete) {}
     }
 }

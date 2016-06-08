@@ -24,7 +24,6 @@ public class ScannerFragment extends Fragment {
     private Camera mCamera;
     private Handler autoFocusHandler;
     private FrameLayout preview;
-    private TextView scanText;
     private Image codeImage;
     private ImageScanner scanner;
     private boolean previewing = true;
@@ -48,7 +47,6 @@ public class ScannerFragment extends Fragment {
         scanner = new ImageScanner();
         scanner.setConfig(0, Config.X_DENSITY, 3);
         scanner.setConfig(0, Config.Y_DENSITY, 3);
-        scanText = (TextView) view.findViewById(R.id.scanText);
         return view;
     }
 
@@ -83,7 +81,6 @@ public class ScannerFragment extends Fragment {
     }
 
     private void resumeCamera() {
-        scanText.setText("Scanning...");
         mCamera = getCameraInstance();
         CameraPreview mPreview = new CameraPreview(getActivity(), mCamera, previewCb, autoFocusCB);
 //        ((FrameLayout) findViewById(R.id.camera)).addView(mPreview);
@@ -115,7 +112,7 @@ public class ScannerFragment extends Fragment {
                 for (Symbol sym : symbolSet) {
                     String lastScannedCode = sym.getData();
                     if (lastScannedCode != null) {
-                        scanText.setText("Scanned result: " + lastScannedCode);
+//                         lastScannedCode; TODO: painting details;
                     }
                 }
             }
