@@ -49,6 +49,7 @@
             android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginRight="@dimen/default_margin"
             android:layout_marginTop="8dp"
+            android:paddingBottom="@dimen/default_margin"
             android:lineSpacingExtra="4sp"
             android:textColor="#eee"
             android:textSize="14sp" />

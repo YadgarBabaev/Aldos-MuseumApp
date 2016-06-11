@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import com.example.aldos.museumapp.items.Exhibition;
+import com.example.aldos.museumapp.items.Painting;
 import com.example.aldos.museumapp.items.PictureObject;
 import com.example.aldos.museumapp.items.News;
 
@@ -47,6 +48,21 @@ public class DBHelper extends DbObject{
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
             byte[] img = cursor.getBlob(cursor.getColumnIndexOrThrow("img"));
             picture = new PictureObject(name, author, date, text, img);
+        }
+        cursor.close();
+        return picture;
+    }
+    public Painting getPainting(int id) {
+        Painting picture = null;
+        String query = "SELECT * FROM gallery WHERE id = " + id;
+        Cursor cursor = this.getDbConnection().rawQuery(query, null);
+        if(cursor.moveToFirst()) {
+            String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+            String text = cursor.getString(cursor.getColumnIndexOrThrow("text"));
+            String author = cursor.getString(cursor.getColumnIndexOrThrow("author"));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+            byte[] img = cursor.getBlob(cursor.getColumnIndexOrThrow("img"));
+            picture = new Painting(id, name, author, date, text, img);
         }
         cursor.close();
         return picture;

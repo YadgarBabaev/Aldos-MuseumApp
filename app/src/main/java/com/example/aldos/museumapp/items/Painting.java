@@ -13,7 +13,7 @@ public class Painting {
     private final String text;
     private final byte[] imgBytes;
 
-    private Painting(int imageId, String title, String author, String date, String text, byte[] imgBytes) {
+    public Painting(int imageId, String title, String author, String date, String text, byte[] imgBytes) {
         this.imageId = imageId;
         this.title = title;
         this.author = author;

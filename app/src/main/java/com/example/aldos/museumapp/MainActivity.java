@@ -1,26 +1,15 @@
 package com.example.aldos.museumapp;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Spinner;
 
-import com.example.aldos.museumapp.fragments.AddExhibitionFragment;
-import com.example.aldos.museumapp.fragments.AddNewsFragment;
-import com.example.aldos.museumapp.fragments.AddPictureFragment;
 import com.example.aldos.museumapp.fragments.ExhibitionFragment;
 import com.example.aldos.museumapp.fragments.MainFragment;
 import com.example.aldos.museumapp.fragments.NewsFragment;
@@ -130,7 +119,8 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
             setTitle(title);
-        } else additionalEvents(id);
+        }
+//        else additionalEvents(id);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;
@@ -138,26 +128,26 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void additionalEvents(int id) {
-        setTitle(R.string.app_name);
-        if (id == R.id.nav_add_picture) {
-            AddPictureFragment fragment = new AddPictureFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_add_news) {
-            AddNewsFragment fragment = new AddNewsFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_add_exhibition) {
-            AddExhibitionFragment fragment = new AddExhibitionFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_delete) {}
-    }
+//    public void additionalEvents(int id) {
+//        setTitle(R.string.app_name);
+//        if (id == R.id.nav_add_picture) {
+//            AddPictureFragment fragment = new AddPictureFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//        } else if (id == R.id.nav_add_news) {
+//            AddNewsFragment fragment = new AddNewsFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//        } else if (id == R.id.nav_add_exhibition) {
+//            AddExhibitionFragment fragment = new AddExhibitionFragment();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//        } else if (id == R.id.nav_delete) {}
+//    }
 }

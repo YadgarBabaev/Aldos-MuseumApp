@@ -4,11 +4,11 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.example.aldos.museumapp.CameraPreview;
 import com.example.aldos.museumapp.R;
@@ -83,7 +83,6 @@ public class ScannerFragment extends Fragment {
     private void resumeCamera() {
         mCamera = getCameraInstance();
         CameraPreview mPreview = new CameraPreview(getActivity(), mCamera, previewCb, autoFocusCB);
-//        ((FrameLayout) findViewById(R.id.camera)).addView(mPreview);
         preview.removeAllViews();
         preview.addView(mPreview);
         if (mCamera != null) {
@@ -112,7 +111,10 @@ public class ScannerFragment extends Fragment {
                 for (Symbol sym : symbolSet) {
                     String lastScannedCode = sym.getData();
                     if (lastScannedCode != null) {
-//                         lastScannedCode; TODO: painting details;
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container, PictureDetailsFragment.newInstance(Integer.parseInt(lastScannedCode)))
+                                .commit();
                     }
                 }
             }

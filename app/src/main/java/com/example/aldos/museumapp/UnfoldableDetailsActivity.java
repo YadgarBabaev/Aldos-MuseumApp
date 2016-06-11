@@ -95,8 +95,8 @@ public class UnfoldableDetailsActivity extends AppCompatActivity {
 
         SpannableBuilder builder = new SpannableBuilder(this);
         builder
-                .append(painting.getAuthor()).append("\n")
-                .append(painting.getDate()).append("\n")
+                .append(painting.getAuthor()).append(". ")
+                .append(painting.getDate()).append(".\n")
                 .append(painting.getText());
         description.setText(builder.build());
 

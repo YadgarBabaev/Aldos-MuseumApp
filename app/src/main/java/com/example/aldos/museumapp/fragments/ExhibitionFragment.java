@@ -45,9 +45,20 @@ public class ExhibitionFragment extends Fragment {
     public void setData() {
         DBHelper db = new DBHelper(getActivity());
         int[] ids = db.getIds("exhibition");
+        ids = reverseArray(ids);
         for (int id : ids){
             Exhibition object = db.getExhibition(id);
             arrayList.add(object);
         }
+    }
+
+    private int[] reverseArray(int[] array){
+        for(int i = 0; i < array.length / 2; i++)
+        {
+            int temp = array[i];
+            array[i] = array[array.length - i - 1];
+            array[array.length - i - 1] = temp;
+        }
+        return array;
     }
 }

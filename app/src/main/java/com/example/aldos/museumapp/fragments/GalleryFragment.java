@@ -33,7 +33,7 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_unfoldable_details, container, false);
         ListView listView = Views.find(getActivity(), R.id.list_view);
-        listView.setAdapter(new PaintingsAdapter(getContext()));
+        listView.setAdapter(new PaintingsAdapter(getActivity()));
 
         mListTouchInterceptor = Views.find(getActivity(), R.id.touch_interceptor_view);
         mListTouchInterceptor.setClickable(false);

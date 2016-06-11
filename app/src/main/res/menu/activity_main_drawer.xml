@@ -31,20 +31,20 @@
             android:title="@string/plan" />
     </group>
 
-    <item android:title="Actions">
-        <menu>
-            <item
-                android:id="@+id/nav_add_picture"
-                android:title="add picture" />
-            <item
-                android:id="@+id/nav_add_news"
-                android:title="add news" />
-            <item
-                android:id="@+id/nav_add_exhibition"
-                android:title="add exhibition" />
-            <item
-                android:id="@+id/nav_delete"
-                android:title="delete entry" />
-        </menu>
-    </item>
+    <!--<item android:title="Actions">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_add_picture"-->
+                <!--android:title="add picture" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_add_news"-->
+                <!--android:title="add news" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_add_exhibition"-->
+                <!--android:title="add exhibition" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_delete"-->
+                <!--android:title="delete entry" />-->
+        <!--</menu>-->
+    <!--</item>-->
 </menu>

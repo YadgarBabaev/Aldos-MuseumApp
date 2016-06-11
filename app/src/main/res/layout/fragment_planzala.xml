@@ -1,16 +1,6 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.PlanZalaFragment">
-
-    <ImageView
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/museum_map"/>
-
-</RelativeLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.aldos.museumapp.zoom.ImageZoomView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/zoomview"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" />
