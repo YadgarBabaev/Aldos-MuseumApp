@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.aldos.museumapp.fragments.ExhibitionFragment;
+import com.example.aldos.museumapp.fragments.ExhibitionHomeFragment;
 import com.example.aldos.museumapp.fragments.MainFragment;
 import com.example.aldos.museumapp.fragments.NewsFragment;
 import com.example.aldos.museumapp.fragments.PlanZalaFragment;
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             setTitle(title);
         } else if (id == R.id.nav_exhibition) {
-            ExhibitionFragment fragment = new ExhibitionFragment();
+            ExhibitionHomeFragment fragment = new ExhibitionHomeFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);

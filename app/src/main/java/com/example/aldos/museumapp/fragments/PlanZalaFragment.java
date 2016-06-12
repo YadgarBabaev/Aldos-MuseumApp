@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.example.aldos.museumapp.R;
 import com.example.aldos.museumapp.zoom.ImageZoomView;
@@ -18,6 +19,8 @@ public class PlanZalaFragment extends Fragment {
     private ImageZoomView mZoomView;
     private ZoomState mZoomState;
     private Bitmap mBitmap;
+    float mX = 0;
+    float mY = 0;
 
     public PlanZalaFragment() {}
 
@@ -35,8 +38,20 @@ public class PlanZalaFragment extends Fragment {
         mZoomView = (ImageZoomView)view.findViewById(R.id.zoomview);
         mZoomView.setZoomState(mZoomState);
         mZoomView.setImage(mBitmap);
-        mZoomListener.setControlType(SimpleZoomListener.ControlType.PAN);
+//        mZoomListener.setControlType(SimpleZoomListener.ControlType.PAN);
         mZoomView.setOnTouchListener(mZoomListener);
+
+        ImageButton zoomIn = (ImageButton)view.findViewById(R.id.zoomIn);
+        zoomIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {}
+        });
+
+        ImageButton zoomOut = (ImageButton)view.findViewById(R.id.zoomOut);
+        zoomOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {}
+        });
 
         resetZoomState();
         return view;

@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.aldos.museumapp.zoom.ImageZoomView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/zoomview"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" />
+    android:layout_height="fill_parent">
+
+    <com.example.aldos.museumapp.zoom.ImageZoomView
+        android:id="@+id/zoomview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/zoomIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/btn_plus"
+        android:layout_margin="@dimen/default_margin"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+    <ImageButton
+        android:visibility="gone"
+        android:id="@+id/zoomOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/btn_minus"
+        android:layout_margin="@dimen/default_margin"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

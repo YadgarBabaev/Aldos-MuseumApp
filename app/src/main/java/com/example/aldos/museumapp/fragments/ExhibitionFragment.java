@@ -1,5 +1,8 @@
 package com.example.aldos.museumapp.fragments;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,57 +11,54 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.aldos.museumapp.R;
 import com.example.aldos.museumapp.dbClasses.DBHelper;
 import com.example.aldos.museumapp.items.Exhibition;
 import com.example.aldos.museumapp.items.ExhibitionAdapter;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 public class ExhibitionFragment extends Fragment {
 
-    ArrayList<Exhibition> arrayList = new ArrayList<>();
-    public ExhibitionFragment() {}
+    private int pos;
+    private static String POS = "pos";
+    private static ArrayList<Exhibition> arrayList;
+//    private ArrayList<Exhibition> arrayList = new ArrayList<>();
+
+    public static ExhibitionFragment newInstance(int position, ArrayList<Exhibition> data) {
+        Bundle args = new Bundle();
+        args.putInt(POS, position);
+        arrayList = data;
+        ExhibitionFragment fragment = new ExhibitionFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        pos = getArguments().getInt(POS);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exhibition, container, false);
+        View view = inflater.inflate(R.layout.exhibition_item, container, false);
+        ImageView cover = (ImageView)view.findViewById(R.id.imageView);
+        TextView title  = (TextView)view.findViewById(R.id.title);
+        TextView text   = (TextView)view.findViewById(R.id.text);
 
-        setData();
+        Exhibition item = arrayList.get(pos);
+        title.setText("\t" + item.getTitle());
+        text.setText(item.getText());
 
-        ListView list = (ListView)view.findViewById(R.id.list);
-
-        ExhibitionAdapter adapter = new ExhibitionAdapter(getActivity(), arrayList);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Exhibition item = arrayList.get(position);
-                Log.d("Exhibition: ", String.valueOf(item));
-            }
-        });
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(item.getImage());
+        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+        cover.setImageBitmap(bitmap);
         return view;
-    }
-
-    public void setData() {
-        DBHelper db = new DBHelper(getActivity());
-        int[] ids = db.getIds("exhibition");
-        ids = reverseArray(ids);
-        for (int id : ids){
-            Exhibition object = db.getExhibition(id);
-            arrayList.add(object);
-        }
-    }
-
-    private int[] reverseArray(int[] array){
-        for(int i = 0; i < array.length / 2; i++)
-        {
-            int temp = array[i];
-            array[i] = array[array.length - i - 1];
-            array[array.length - i - 1] = temp;
-        }
-        return array;
     }
 }

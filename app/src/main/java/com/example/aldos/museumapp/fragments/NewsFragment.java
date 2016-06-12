@@ -24,7 +24,7 @@ public class NewsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.listview, container, false);
+        View view = inflater.inflate(R.layout.fragment_news, container, false);
 
         setData();
 
@@ -45,19 +45,20 @@ public class NewsFragment extends Fragment {
     public void setData() {
         DBHelper db = new DBHelper(getActivity());
         int[] ids = db.getIds("news");
+        ids = reverseArray(ids);
         for (int id : ids){
             News object = db.getNews(id);
             newsArrayList.add(object);
         }
     }
 
-//    private int[] reverseArray(int[] array){
-//        for(int i = 0; i < array.length / 2; i++)
-//        {
-//            int temp = array[i];
-//            array[i] = array[array.length - i - 1];
-//            array[array.length - i - 1] = temp;
-//        }
-//        return array;
-//    }
+    private int[] reverseArray(int[] array){
+        for(int i = 0; i < array.length / 2; i++)
+        {
+            int temp = array[i];
+            array[i] = array[array.length - i - 1];
+            array[array.length - i - 1] = temp;
+        }
+        return array;
+    }
 }

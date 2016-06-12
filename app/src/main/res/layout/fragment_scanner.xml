@@ -4,14 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <FrameLayout
-            android:id="@+id/cameraPreview"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true"/>
+        android:id="@+id/cameraPreview"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
     <FrameLayout
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/scan_border">
-    </FrameLayout>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/for_scan" />
+    <TextView
+        android:text="Отсканируйте QR код, чтобы узнать больше о картине"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cameraPreview"
+        android:padding="50dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"/>
+
 </RelativeLayout>
